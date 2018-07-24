@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hthl.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hthl.pojo.User">
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="upwd" jdbcType="VARCHAR" property="upwd" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="uemail" jdbcType="VARCHAR" property="uemail" />
+    <result column="utel" jdbcType="VARCHAR" property="utel" />
+    <result column="ubirthday" jdbcType="DATE" property="ubirthday" />
+    <result column="ugender" jdbcType="VARCHAR" property="ugender" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="uintroduce" jdbcType="VARCHAR" property="uintroduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, uname, upwd, realname, uemail, utel, ubirthday, ugender, state, code, uintroduce
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where uid = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hthl.pojo.User">
+    insert into user (uid, uname, upwd, 
+      realname, uemail, utel, 
+      ubirthday, ugender, state, 
+      code, uintroduce)
+    values (#{uid,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}, #{upwd,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, #{utel,jdbcType=VARCHAR}, 
+      #{ubirthday,jdbcType=DATE}, #{ugender,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{code,jdbcType=VARCHAR}, #{uintroduce,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hthl.pojo.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="upwd != null">
+        upwd,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="uemail != null">
+        uemail,
+      </if>
+      <if test="utel != null">
+        utel,
+      </if>
+      <if test="ubirthday != null">
+        ubirthday,
+      </if>
+      <if test="ugender != null">
+        ugender,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="uintroduce != null">
+        uintroduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="upwd != null">
+        #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="uemail != null">
+        #{uemail,jdbcType=VARCHAR},
+      </if>
+      <if test="utel != null">
+        #{utel,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirthday != null">
+        #{ubirthday,jdbcType=DATE},
+      </if>
+      <if test="ugender != null">
+        #{ugender,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="uintroduce != null">
+        #{uintroduce,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hthl.pojo.User">
+    update user
+    <set>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="upwd != null">
+        upwd = #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="uemail != null">
+        uemail = #{uemail,jdbcType=VARCHAR},
+      </if>
+      <if test="utel != null">
+        utel = #{utel,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirthday != null">
+        ubirthday = #{ubirthday,jdbcType=DATE},
+      </if>
+      <if test="ugender != null">
+        ugender = #{ugender,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="uintroduce != null">
+        uintroduce = #{uintroduce,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hthl.pojo.User">
+    update user
+    set uname = #{uname,jdbcType=VARCHAR},
+      upwd = #{upwd,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      uemail = #{uemail,jdbcType=VARCHAR},
+      utel = #{utel,jdbcType=VARCHAR},
+      ubirthday = #{ubirthday,jdbcType=DATE},
+      ugender = #{ugender,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      uintroduce = #{uintroduce,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+</mapper>
